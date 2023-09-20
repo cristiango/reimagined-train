@@ -1,0 +1,3 @@
+name: reimagined-train.functions-on-dotnet7
+runtime: dotnet
+description: Deploy an .NET7 Azure Function

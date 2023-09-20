@@ -1,0 +1,5 @@
+name: reimagined-train.functions-on-dotnet7
+runtime: 
+  name: dotnet
+  options:
+    binary: ./infra

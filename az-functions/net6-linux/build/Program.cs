@@ -14,7 +14,7 @@ var tempPath = Path.Combine(Environment.CurrentDirectory, "temp");
 Target(Clean, () =>
 {
     Utils.CleanDirectory(artifactsPath);
-    Utils.CleanDirectory(tempPath);
+    Utils.CleanDirectory($"{tempPath}/app");
 });
 
 Target(Build, () =>
@@ -24,7 +24,7 @@ Target(Build, () =>
 
 Target(PublishInfra, DependsOn(Clean, Build), () =>
 {
-    Run("dotnet", $"publish api/api.csproj -r linux -c Release --sc -o {tempPath}/app");
+    Run("dotnet", $"publish api/api.csproj -r linux-x64 -c Release --sc -p:PublishReadyToRun=false -o {tempPath}/app");
     ZipFile.CreateFromDirectory(Path.Combine(tempPath, "app"),Path.Combine(artifactsPath, "function.zip"));
 });
 
